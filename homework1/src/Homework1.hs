@@ -248,10 +248,15 @@ natPow _ Z = S Z
 natPow x (S y) = natMult x (natPow x y)
 
 superNat :: N -> N -> N -> N
-superNat Z x y = natSum x y
-superNat (S Z) x y = natMult x y
-superNat (S (S Z)) x y = natPow x y
-superNat _ _ _= error "нет такого"
+superNat x y Z = natSum x y
+superNat x y (S Z) = natMult x y
+superNat x y (S (S Z)) = natPow x y
+superNat x (S b) (S n)= natMult x $ natPow x b
+
+--superNat Z x y = natSum x y
+--superNat (S Z) x y = natMult x y
+--superNat (S (S Z)) x y = natPow x y
+--superNat _ _ _= error "нет такого"
 --superNat op x y = if
 --    | op == Z       -> natSum x y
 --    | op == S Z     -> natMult x y
