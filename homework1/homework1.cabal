@@ -34,6 +34,8 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , random
+    , split
   default-language: Haskell2010
 
 executable homework1-exe
@@ -46,6 +48,8 @@ executable homework1-exe
   build-depends:
       base >=4.7 && <5
     , homework1
+    , random
+    , split
   default-language: Haskell2010
 
 test-suite homework1-test
@@ -59,4 +63,6 @@ test-suite homework1-test
   build-depends:
       base >=4.7 && <5
     , homework1
+    , random
+    , split
   default-language: Haskell2010
