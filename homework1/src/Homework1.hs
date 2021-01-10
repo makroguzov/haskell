@@ -248,10 +248,20 @@ natPow _ Z = S Z
 natPow x (S y) = natMult x (natPow x y)
 
 superNat :: N -> N -> N -> N
-superNat x y Z = natSum x y
-superNat x y (S Z) = natMult x y
-superNat x y (S (S Z)) = natPow x y
-superNat x (S b) (S n)= natMult x $ natPow x (natSum b n)
+superNat a (S b1) (S n1) = if
+    | S n1 == Z -> let b = S b1 in S b 
+    | S b1 == Z -> if 
+            | S n1 == S Z     -> a
+            | S n1 == S (S Z) -> Z
+            | otherwise -> S Z
+    | otherwise -> let n = S n1 in superNat a (superNat a b1 n) n1
+
+--superNat x y Z = natSum x y
+--superNat x y (S k) = superNat x y k
+
+--superNat x y (S Z) = natMult x y
+--superNat x y (S (S Z)) = natPow x y
+--superNat x (S b) (S n)= natMult x $ natPow x (natSum b n)
 
 --superNat Z x y = natSum x y
 --superNat (S Z) x y = natMult x y
